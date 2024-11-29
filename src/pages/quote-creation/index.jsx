@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import { Box, Button, Typography, TextField } from "@mui/material";
 
 import { quoteAPIInstance } from "../../api";
@@ -56,6 +57,7 @@ const QuoteCreation = () => {
   };
 
   const handleCreateQuote = async () => {
+    setText("");
     const data = { text: "This is a quote", mediaUrl: mediaUrl };
     try {
       const response = await quoteAPIInstance.post("postQuote", data);

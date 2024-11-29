@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Grid2 as Grid, Typography, Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 
-import { quoteAPIInstance } from "../../api";
+import { useNavigate } from "react-router-dom";
+import { Grid2 as Grid, Typography, Button } from "@mui/material";
+
 import QuoteListCard from "../../components/quote-list-card";
+import { quoteAPIInstance } from "../../api";
+
 import "./style.css";
 
 export default function QuoteListing() {

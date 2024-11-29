@@ -1,18 +1,9 @@
 import react, { useState } from "react";
-import {
-  Grid2 as Grid,
-  Divider,
-  Card,
-  CardContent,
-  Typography,
-  Avatar,
-  Box,
-  Button,
-  TextField,
-  Container,
-} from "@mui/material";
-import "./style.css";
+
+import { Grid2 as Grid, Card, Typography } from "@mui/material";
 import moment from "moment";
+
+import "./style.css";
 
 const QuoteListCard = ({
   quoteText,
