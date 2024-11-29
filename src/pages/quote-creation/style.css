@@ -1,0 +1,10 @@
+.createQuoteBtn {
+  margin-top: 1%;
+}
+
+.quoteCreationHeader {
+  margin-top: 3% !important;
+  margin-left: 4% !important;
+  font-size: 2.5em !important;
+  font-weight: 700 !important;
+}

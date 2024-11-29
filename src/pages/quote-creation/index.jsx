@@ -3,6 +3,8 @@ import { Box, Button, Typography, TextField } from "@mui/material";
 
 import { quoteAPIInstance } from "../../api";
 
+import "./style.css";
+
 const QuoteCreation = () => {
   const [image, setImage] = useState(null);
   const [text, setText] = useState("");
@@ -37,14 +39,15 @@ const QuoteCreation = () => {
       );
 
       const data = await response.json();
-
       if (data) {
-        setMediaurl(data.mediaUrl);
+        setMediaurl(data[0].url);
       }
 
       alert("Image uploaded successfully!");
     } catch (error) {
-      alert("Failed to upload the image.");
+      alert(
+        "Failed to upload the image. Please make sure to upload the right format"
+      );
     }
   };
 
@@ -56,7 +59,6 @@ const QuoteCreation = () => {
     const data = { text: "This is a quote", mediaUrl: mediaUrl };
     try {
       const response = await quoteAPIInstance.post("postQuote", data);
-
       alert("You have successfully created the quote");
     } catch {
       alert("Error while creating the quote");
@@ -64,52 +66,58 @@ const QuoteCreation = () => {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: 2,
-        mt: 4,
-      }}
-    >
-      <Typography>Upload an Image</Typography>
-      <Button variant="contained" component="label" sx={{ mb: 2 }}>
-        Choose File
-        <input
-          type="file"
-          accept="image/*"
-          hidden
-          onChange={handleFileChange}
+    <>
+      <Typography className="quoteCreationHeader">Quote Creation</Typography>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "start",
+          gap: 2,
+          m: 10,
+        }}
+      >
+        <Typography>
+          To Upload an Image
+          <Button variant="contained" component="label" sx={{ ml: 2 }}>
+            Choose File
+            <input
+              type="file"
+              accept="image/*"
+              hidden
+              onChange={handleFileChange}
+            />
+          </Button>
+        </Typography>
+
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleUploadImage}
+          disabled={!image}
+        >
+          Upload the image
+        </Button>
+
+        <TextField
+          id="standard-basic"
+          label="Add Quote Text"
+          variant="standard"
+          value={text}
+          onChange={handleTextChange}
         />
-      </Button>
 
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleUploadImage}
-        disabled={!image}
-      >
-        Upload the image
-      </Button>
-
-      <TextField
-        id="standard-basic"
-        label="Add Quote Text"
-        variant="standard"
-        value={text}
-        onChange={handleTextChange}
-      />
-
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleCreateQuote}
-        disabled={!image}
-      >
-        Create Quote
-      </Button>
-    </Box>
+        <Button
+          variant="contained"
+          color="primary"
+          className="createQuoteBtn"
+          onClick={handleCreateQuote}
+          disabled={!image}
+        >
+          Create Quote
+        </Button>
+      </Box>
+    </>
   );
 };
 

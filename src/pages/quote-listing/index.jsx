@@ -1,16 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Grid2 as Grid,
-  Divider,
-  Card,
-  CardContent,
-  Typography,
-  Avatar,
-  Box,
-  Button,
-  TextField,
-  Container,
-} from "@mui/material";
+import { Grid2 as Grid, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 import { quoteAPIInstance } from "../../api";
@@ -38,8 +27,6 @@ export default function QuoteListing() {
   const handleLoadMore = () => {
     setOffset((prev) => prev + 20);
   };
-
-  //console.log(results);
 
   /*
           createdAt : "2024-06-24T09:32:30.000Z"
@@ -71,7 +58,7 @@ export default function QuoteListing() {
         </Grid>
 
         {results.map((quote) => (
-          <Grid size={3} key={quote.id}>
+          <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3, xl: 2 }} key={quote.id}>
             <QuoteListCard
               quoteText={quote.text}
               creationTimestamp={quote.createdAt}
